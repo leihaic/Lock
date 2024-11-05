@@ -41,7 +41,6 @@ public class MainActivity extends Activity {
                 finish();
             } else {
                 enableAppAsAccessibilityService();
-                finish();
             }
         // } else if (isHuaweiNougat()) {
         //     launchEmuiLockActivity();
