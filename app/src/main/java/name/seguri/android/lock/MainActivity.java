@@ -76,7 +76,7 @@ public class MainActivity extends Activity {
         final boolean[] enabled = {false};
         mAM.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK).forEach(enabledAccessibilityService -> {
             ServiceInfo enabledServiceInfo = enabledAccessibilityService.getResolveInfo().serviceInfo;
-            i("[isAccessibilityServiceEnabled] packageName='%s' serviceName='%s'", enabledServiceInfo.packageName, enabledServiceInfo.name);
+            // i("[isAccessibilityServiceEnabled] packageName='%s' serviceName='%s'", enabledServiceInfo.packageName, enabledServiceInfo.name);
             if (enabledServiceInfo.packageName.equals(getPackageName()) && enabledServiceInfo.name.equals(LockAccessibilityService.class.getName())) {
                 enabled[0] = true;
             }
