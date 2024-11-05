@@ -24,16 +24,16 @@ public class MainActivity extends Activity {
 
     // private ComponentName mCN;
     // private DevicePolicyManager mDPM;
-    // private AccessibilityManager mAM;
+    private AccessibilityManager mAM;
 
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-/*         mCN = new ComponentName(this, MainReceiver.class); // Receiver, not Activity!
-        mDPM = (DevicePolicyManager)getSystemService(DEVICE_POLICY_SERVICE);
-        mAM = (AccessibilityManager)getSystemService(Context.ACCESSIBILITY_SERVICE); */
+        // mCN = new ComponentName(this, MainReceiver.class); // Receiver, not Activity!
+        // mDPM = (DevicePolicyManager)getSystemService(DEVICE_POLICY_SERVICE);
+        mAM = (AccessibilityManager)getSystemService(Context.ACCESSIBILITY_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             if (isAccessibilityServiceEnabled()) {
