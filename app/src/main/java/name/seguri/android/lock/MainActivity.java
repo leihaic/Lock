@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
     private static final String EMUI_LOCK_PKG = "com.android.systemui";
     private static final String EMUI_LOCK_CLS = "com.huawei.keyguard.onekeylock.OneKeyLockActivity";
 
-    private ComponentName mCN;
+    // private ComponentName mCN;
     // private DevicePolicyManager mDPM;
     private AccessibilityManager mAM;
 
@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mCN = new ComponentName(this, MainReceiver.class); // Receiver, not Activity!
+        // mCN = new ComponentName(this, MainReceiver.class); // Receiver, not Activity!
         // mDPM = (DevicePolicyManager)getSystemService(DEVICE_POLICY_SERVICE);
         mAM = (AccessibilityManager)getSystemService(Context.ACCESSIBILITY_SERVICE);
 
@@ -111,6 +111,7 @@ public class MainActivity extends Activity {
                 })
                 .setNegativeButton(android.R.string.cancel, (dialog, which) -> {
                     dialog.dismiss();
+                    finish();
                 })
                 .show();
     }
