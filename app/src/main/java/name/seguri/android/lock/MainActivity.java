@@ -22,18 +22,18 @@ public class MainActivity extends Activity {
     private static final String EMUI_LOCK_PKG = "com.android.systemui";
     private static final String EMUI_LOCK_CLS = "com.huawei.keyguard.onekeylock.OneKeyLockActivity";
 
-    private ComponentName mCN;
-    private DevicePolicyManager mDPM;
-    private AccessibilityManager mAM;
+    // private ComponentName mCN;
+    // private DevicePolicyManager mDPM;
+    // private AccessibilityManager mAM;
 
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mCN = new ComponentName(this, MainReceiver.class); // Receiver, not Activity!
+/*         mCN = new ComponentName(this, MainReceiver.class); // Receiver, not Activity!
         mDPM = (DevicePolicyManager)getSystemService(DEVICE_POLICY_SERVICE);
-        mAM = (AccessibilityManager)getSystemService(Context.ACCESSIBILITY_SERVICE);
+        mAM = (AccessibilityManager)getSystemService(Context.ACCESSIBILITY_SERVICE); */
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             if (isAccessibilityServiceEnabled()) {
@@ -42,31 +42,32 @@ public class MainActivity extends Activity {
             } else {
                 enableAppAsAccessibilityService();
             }
-        } else if (isHuaweiNougat()) {
-            launchEmuiLockActivity();
-            finish();
-        } else if (isAdminActive()) {
-            lockAsDeviceAdmin();
-            finish();
+        // } else if (isHuaweiNougat()) {
+        //     launchEmuiLockActivity();
+        //     finish();
+        // } else if (isAdminActive()) {
+        //     lockAsDeviceAdmin();
+        //     finish();
         } else {
-            enableAppAsAdministrator();
+            // enableAppAsAdministrator();
+            finish();
         }
     }
 
-    @Override
+/*     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         i("[onActivityResult] requestCode=%d resultCode=%d resultCodeString=%s", requestCode, resultCode, getResultString(resultCode));
         if (requestCode == REQUEST_CODE_ENABLE_ADMIN && resultCode == RESULT_OK) {
             lockAsDeviceAdmin();
         }
         finish();
-    }
+    } */
 
-    private static boolean isHuaweiNougat() {
+/*     private static boolean isHuaweiNougat() {
         return Build.MANUFACTURER.equalsIgnoreCase("huawei")
                 && Build.VERSION.SDK_INT == Build.VERSION_CODES.N;
     }
-
+ */
     /**
      * Go through all enabled accessibility services, looking for ours.
      */
@@ -83,7 +84,7 @@ public class MainActivity extends Activity {
         return enabled[0];
     }
 
-    private boolean isAdminActive() {
+/*     private boolean isAdminActive() {
         return mDPM.isAdminActive(mCN);
     }
 
@@ -98,7 +99,7 @@ public class MainActivity extends Activity {
         intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mCN);
         intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, getString(R.string.receiver_expl));
         startActivityForResult(intent, REQUEST_CODE_ENABLE_ADMIN);
-    }
+    } */
 
     private void enableAppAsAccessibilityService() {
         new AlertDialog.Builder(this)
@@ -114,28 +115,28 @@ public class MainActivity extends Activity {
                 .show();
     }
 
-    private String getResultString(final int resultCode) {
+/*     private String getResultString(final int resultCode) {
         switch (resultCode) {
             case RESULT_CANCELED: return "RESULT_CANCELED";
             case RESULT_FIRST_USER: return "RESULT_FIRST_USER";
             case RESULT_OK: return "RESULT_OK";
             default: return "UNKNOWN";
         }
-    }
+    } */
 
     private void startLockAccessibilityService() {
         Intent intent = new Intent(LockAccessibilityService.ACTION_LOCK, null, this, LockAccessibilityService.class);
         startService(intent);
     }
-
+/* 
     private void launchEmuiLockActivity() {
         i("[launchEmuiLockActivity] startActivity");
         Intent intent = new Intent();
         intent.setComponent(new ComponentName(EMUI_LOCK_PKG, EMUI_LOCK_CLS));
         startActivity(intent);
-    }
-
+    } */
+/* 
     private static void i(final String fmt, final Object... args) {
         Log.i(TAG, String.format(fmt, args));
-    }
+    } */
 }
