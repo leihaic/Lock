@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.widget.RemoteViews;
+import android.app.PendingIntent;
 
 public class LockAppWidgetProvider extends AppWidgetProvider {
 
