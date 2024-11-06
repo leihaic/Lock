@@ -17,7 +17,7 @@ public class LockAppWidgetProvider extends AppWidgetProvider {
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             // 设置小部件点击事件
-            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
+            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_lock);
             views.setOnClickPendingIntent(R.id.lock_btn, pendingIntent);
             appWidgetManager.updateAppWidget(appWidgetId, views);
         }
